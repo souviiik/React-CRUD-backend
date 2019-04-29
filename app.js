@@ -3,7 +3,13 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 const app = express();
-const db = mongoose.connect('mongodb://localhost/bookAPI');
+
+mongoose.connect('mongodb://localhost/bookAPI', (err) => {
+  if(err) {
+    console.log(`Unable to connect to db due to: ${err}`);
+  }
+});
+
 const port = process.env.PORT || 3000;
 const Book = require('./models/bookModel');
 
